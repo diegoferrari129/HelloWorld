@@ -10,6 +10,12 @@ class Calculator
         Console.WriteLine("Inserisci il secondo numero:");
         string input2 = Console.ReadLine();
 
+        if (string.IsNullOrEmpty(input1) || string.IsNullOrEmpty(input2))
+        {
+            Console.WriteLine("Devi inserire un numero.");
+            return;
+        }
+
         /*
         TryParse: funzione che converte stringa in intero
         out int num1 : assigna il valore della conversione alla variabile num1
