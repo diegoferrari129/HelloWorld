@@ -1,33 +1,42 @@
 ﻿using System;
 
-class Calculator
+namespace Example
 {
-    static void Main()
+    class Calculator
     {
-        Console.WriteLine("Inserisci il primo numero:");
-        string input1 = Console.ReadLine();
-
-        Console.WriteLine("Inserisci il secondo numero:");
-        string input2 = Console.ReadLine();
-
-        if (string.IsNullOrEmpty(input1) || string.IsNullOrEmpty(input2))
+        static void Main()
         {
-            Console.WriteLine("Devi inserire un numero.");
-            return;
-        }
+            Console.WriteLine("Inserisci il primo numero:");
+            int num1 = ValidateAndRead();
 
-        /*
-        TryParse: funzione che converte stringa in intero
-        out int num1 : assigna il valore della conversione alla variabile num1
-        */
-        if (int.TryParse(input1, out int num1) && int.TryParse(input2, out int num2))
-        {
+            Console.WriteLine("Inserisci il secondo numero:");
+            int num2 = ValidateAndRead();
+
             int sum = num1 + num2;
             Console.WriteLine($"{num1} + {num2} = {sum}");
         }
-        else
+
+        static int ValidateAndRead()
         {
-            Console.WriteLine("Attenzione, inserisci solo numeri interi");
+            while (true)
+            {
+                string input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Errore: Devi inserire un numero.");
+                    continue;
+                }
+
+                if (int.TryParse(input, out int number))
+                {
+                    return number;
+                }
+                else
+                {
+                    Console.WriteLine("Attenzione, inserisci solo numeri interi.");
+                }
+            }
         }
     }
 }
